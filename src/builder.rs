@@ -15,7 +15,7 @@ impl<'a> Builder<'a> {
 
     pub fn build(&self) {
         let raw_theme = serde_json::json!({
-          "$schema": "https://zed.dev/schema/themes/v0.1.0.json",
+          "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
           "name": self.theme.name,
           "author": self.theme.author,
           "themes": self.theme.themes,
