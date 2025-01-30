@@ -22,7 +22,7 @@ impl<'a> Builder<'a> {
         });
 
         let dir = current_dir().unwrap();
-        let target_path = dir.join("themes/theme.json");
+        let target_path = dir.join("../themes/theme.json");
 
         let mut file = File::create(target_path).unwrap();
         let _ = file
