@@ -195,7 +195,7 @@ checksum = "38b58827f4464d87d377d175e90bf58eb00fd8716ff0a62f80356b5e61555d0d"
 
 [[package]]
 name = "snowfall-zed"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "palette",
  "serde",

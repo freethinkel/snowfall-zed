@@ -3,7 +3,8 @@
 use builder::Builder;
 use color::Color;
 use theme::{
-    Brightness, Theme, ThemeDiagnostic, ThemeGit, ThemePackage, ThemeTerminal, ThemeTokens,
+    Brightness, Theme, ThemeCreatePayload, ThemeDiagnostic, ThemeGit, ThemePackage, ThemeTerminal,
+    ThemeTokens,
 };
 
 mod builder;
@@ -11,7 +12,7 @@ mod color;
 mod theme;
 
 fn main() {
-    let dark_theme: Theme = Theme {
+    let dark_theme: Theme = Theme::new(ThemeCreatePayload {
         name: String::from("Snowfall dark"),
         brightness: Brightness::Dark,
         accent: Color::from_hex("#84c4df"),
@@ -56,9 +57,9 @@ fn main() {
             warning: Color::from_hex("#EBD2A7"),
             info: Color::from_hex("#9BCAFF"),
         },
-    };
+    });
 
-    let light_theme = Theme {
+    let light_theme = Theme::new(ThemeCreatePayload {
         name: String::from("Snowfall light"),
         brightness: Brightness::Light,
         background: Color::from_hex("#ffffff"),
@@ -103,12 +104,17 @@ fn main() {
             bright_cyan: Color::from_hex("#5e8d87"),
             bright_white: Color::from_hex("#ffffff"),
         },
-    };
+    });
 
     Builder::new(&ThemePackage {
         name: "Snowfall".into(),
         author: "freethinkel".into(),
-        themes: vec![dark_theme, light_theme],
+        themes: vec![
+            dark_theme.clone(),
+            dark_theme.clone().to_bg_syntax(),
+            light_theme.clone(),
+            light_theme.clone().to_bg_syntax(),
+        ],
     })
     .build();
 }

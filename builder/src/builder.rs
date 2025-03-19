@@ -1,6 +1,9 @@
 use std::{env::current_dir, fs::File, io::Write};
 
-use crate::theme::{Brightness, Theme, ThemePackage};
+use crate::{
+    color::Color,
+    theme::{Brightness, Theme, ThemePackage},
+};
 use serde::Serialize;
 use serde_json::{to_string_pretty, Map, Value};
 
@@ -32,11 +35,20 @@ impl<'a> Builder<'a> {
 }
 
 trait SyntaxTheme {
-    fn syntax(&self) -> Value;
+    fn syntax(&self, background_color: bool) -> Value;
 }
 
 impl SyntaxTheme for Theme {
-    fn syntax(&self) -> Value {
+    fn syntax(&self, background_color: bool) -> Value {
+        let bg_fields = vec![
+            "string",
+            "function",
+            "comment",
+            "comment.doc",
+            "constant",
+            "character",
+        ];
+
         serde_json::json!({
             "attribute": {
               "color": self.tokens.properties,
@@ -59,7 +71,7 @@ impl SyntaxTheme for Theme {
               "font_weight": null
             },
             "comment.doc": {
-              "color": "#ff0000",
+              "color": self.tokens.comment.mix(self.foreground, 0.5),
               "font_style": null,
               "font_weight": null
             },
@@ -83,11 +95,11 @@ impl SyntaxTheme for Theme {
               "font_style": null,
               "font_weight": null
             },
-            "emphasis.strong": {
-              "color": "#0000ff",
-              "font_style": null,
-              "font_weight": null
-            },
+            // "emphasis.strong": {
+            //   "color": "#0000ff",
+            //   "font_style": null,
+            //   "font_weight": null
+            // },
             "function": {
               "color": self.tokens.functions,
               "font_style": null,
@@ -174,7 +186,7 @@ impl SyntaxTheme for Theme {
               "font_weight": null
             },
             "string.regex": {
-              "color": "#0000ff",
+              "color": self.tokens.constants,
               "font_style": null,
               "font_weight": null
             },
@@ -184,7 +196,7 @@ impl SyntaxTheme for Theme {
               "font_weight": null
             },
             "string.special.symbol": {
-              "color": "#ff00ff",
+              "color": self.tokens.constants,
               "font_style": null,
               "font_weight": null
             },
@@ -228,14 +240,22 @@ impl SyntaxTheme for Theme {
         .unwrap()
         .iter()
         .map(|(key, value)| {
-            let value = serde_json::json!({
-              // "background_color": Color::from_hex(
-              //   value["color"].as_str().unwrap()
-              // ).with_opacity(0.2),
-              "color": value["color"],
-              "font_style": value["font_style"],
-              "font_weight": value["font_weight"]
-            });
+            let value = if background_color && bg_fields.contains(&key.as_str()) {
+                serde_json::json!({
+                  "background_color": Color::from_hex(
+                    value["color"].as_str().unwrap()
+                  ).with_opacity(0.2),
+                  "color": value["color"],
+                  "font_style": value["font_style"],
+                  "font_weight": value["font_weight"]
+                })
+            } else {
+                serde_json::json!({
+                  "color": value["color"],
+                  "font_style": value["font_style"],
+                  "font_weight": value["font_weight"]
+                })
+            };
 
             (key.clone(), value.clone())
         })
@@ -262,6 +282,7 @@ impl Serialize for Theme {
             "panel.background": self.secondary_bg(),
             "editor.foreground": self.foreground,
             "toolbar.background": self.secondary_bg(),
+            "editor.subheader.background": self.background.darken(0.1),
 
             "surface.background": self.secondary_bg(),
             "elevated_surface.background": self.secondary_bg().mix(self.foreground, 0.05),
@@ -283,9 +304,22 @@ impl Serialize for Theme {
 
             // GIT
             "created": self.git.added,
+            "created.background": self.git.added.with_opacity(0.2),
             "modified": self.git.modified,
+            "modified.background": self.git.modified.with_opacity(0.2),
             "deleted": self.git.removed,
+            "deleted.background": self.git.removed.with_opacity(0.2),
             "conflict": self.git.removed,
+            "conflict.background": self.git.removed.with_opacity(0.2),
+            // VSC
+            "version_control.ignored": self.foreground.with_opacity(0.5),
+            "version_control.ignored_background": self.foreground.with_opacity(0.2),
+            "version_control.added": self.git.added,
+            "version_control.added_background": self.git.added.with_opacity(0.2),
+            "version_control.modified": self.git.modified,
+            "version_control.modified_background": self.git.modified.with_opacity(0.2),
+            "version_control.deleted": self.git.removed,
+            "version_control.deleted_background": self.git.removed.with_opacity(0.2),
 
             "hint": self.foreground.with_opacity(0.5),
             "hint.background": self.diagnostics.info.with_opacity(0.1),
@@ -333,6 +367,7 @@ impl Serialize for Theme {
             // bars
             "status_bar.background": self.secondary_bg(),
             "title_bar.background": self.secondary_bg(),
+            "title_bar.inactive_background": self.secondary_bg(),
             "tab_bar.background": self.secondary_bg(),
             "toolbar.background": self.background,
 
@@ -368,7 +403,7 @@ impl Serialize for Theme {
             "terminal.ansi.bright_cyan": self.terminal.bright_cyan,
             "terminal.ansi.white": self.terminal.white,
             "terminal.ansi.bright_white": self.terminal.bright_white,
-            "syntax": self.syntax()
+            "syntax": self.syntax(self.is_background_syntax)
           }
         });
         value.serialize(serializer)

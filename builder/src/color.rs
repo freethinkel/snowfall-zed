@@ -6,7 +6,7 @@ use palette::{
 };
 use serde::Serialize;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Copy, Clone)]
 pub struct Color {
     value: Srgba<u8>,
 }
@@ -41,6 +41,10 @@ impl Color {
         return Self {
             value: new_color.into(),
         };
+    }
+
+    pub fn darken(&self, amount: f32) -> Self {
+        return self.mix(Color::from_hex("#000000"), amount);
     }
 }
 
