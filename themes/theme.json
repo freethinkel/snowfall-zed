@@ -282,8 +282,8 @@
         "version_control.added_background": "#bdb96933",
         "version_control.deleted": "#fa7583",
         "version_control.deleted_background": "#fa758333",
-        "version_control.ignored": "#474c54",
-        "version_control.ignored_background": "#474c5433",
+        "version_control.ignored": "#91a2a67f",
+        "version_control.ignored_background": "#91a2a633",
         "version_control.modified": "#84c4df",
         "version_control.modified_background": "#84c4df33",
         "warning": "#ebd2a7",
@@ -576,8 +576,8 @@
         "version_control.added_background": "#bdb96933",
         "version_control.deleted": "#fa7583",
         "version_control.deleted_background": "#fa758333",
-        "version_control.ignored": "#474c54",
-        "version_control.ignored_background": "#474c5433",
+        "version_control.ignored": "#91a2a67f",
+        "version_control.ignored_background": "#91a2a633",
         "version_control.modified": "#84c4df",
         "version_control.modified_background": "#84c4df33",
         "warning": "#ebd2a7",
@@ -864,8 +864,8 @@
         "version_control.added_background": "#8acb6b33",
         "version_control.deleted": "#ff8f9b",
         "version_control.deleted_background": "#ff8f9b33",
-        "version_control.ignored": "#bdc1c8",
-        "version_control.ignored_background": "#bdc1c833",
+        "version_control.ignored": "#5c61657f",
+        "version_control.ignored_background": "#5c616533",
         "version_control.modified": "#88c0d0",
         "version_control.modified_background": "#88c0d033",
         "warning": "#ec9c62",
@@ -1158,8 +1158,8 @@
         "version_control.added_background": "#8acb6b33",
         "version_control.deleted": "#ff8f9b",
         "version_control.deleted_background": "#ff8f9b33",
-        "version_control.ignored": "#bdc1c8",
-        "version_control.ignored_background": "#bdc1c833",
+        "version_control.ignored": "#5c61657f",
+        "version_control.ignored_background": "#5c616533",
         "version_control.modified": "#88c0d0",
         "version_control.modified_background": "#88c0d033",
         "warning": "#ec9c62",
@@ -1168,3 +1168,4 @@
       }
     }
   ]
+}
