@@ -1,9 +1,6 @@
 use std::str::FromStr;
 
-use palette::{
-    rgb::{Rgb, Rgba},
-    Clamp, MixAssign, Srgb, Srgba,
-};
+use palette::{MixAssign, Srgba};
 use serde::Serialize;
 
 #[derive(Debug, Copy, Clone)]

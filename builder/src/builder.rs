@@ -1,4 +1,9 @@
-use std::{env::current_dir, fs::File, io::Write};
+use std::{
+    env::{self, current_dir},
+    fs::{self, File},
+    io::Write,
+    path::Path,
+};
 
 use crate::{
     color::Color,
@@ -27,10 +32,22 @@ impl<'a> Builder<'a> {
         let dir = current_dir().unwrap();
         let target_path = dir.join("../themes/theme.json");
 
-        let mut file = File::create(target_path).unwrap();
+        let mut file = File::create(&target_path).unwrap();
         let _ = file
             .write(to_string_pretty(&raw_theme).unwrap().as_bytes())
             .expect("Error writing theme");
+
+        if env::var("PREVIEW").unwrap_or("".into()) == "true" {
+            let home_dir = env::var("HOME").expect("HOME environment variable not set");
+            let preview_file = Path::new(&home_dir).join(".config/zed/themes/snowfall.json");
+
+            match fs::remove_file(&preview_file) {
+                Ok(_) => println!("Preview file removed successfully"),
+                Err(e) => println!("Error removing preview file: {}", e),
+            }
+
+            let _ = fs::copy(&target_path, preview_file).expect("Error copying theme");
+        }
     }
 }
 
@@ -91,7 +108,7 @@ impl SyntaxTheme for Theme {
               "font_weight": null
             },
             "emphasis": {
-              "color": "#0000ff",
+              "color": self.tokens.properties,
               "font_style": null,
               "font_weight": null
             },
@@ -116,7 +133,7 @@ impl SyntaxTheme for Theme {
               "font_weight": null
             },
             "label": {
-              "color": "#0000ff",
+              "color": self.tokens.functions,
               "font_style": null,
               "font_weight": null
             },
@@ -358,11 +375,11 @@ impl Serialize for Theme {
             "element.selected": self.accent.with_opacity(0.1),
             "element.disabled": "#ff0000",
 
-            "icon": "#0000ff",
-            "icon.muted": "#0000ff",
-            "icon.disabled": "#0000ff",
-            "icon.placeholder": "#0000ff",
-            "icon.accent": "#0000ff",
+            "icon": self.foreground,
+            "icon.muted": self.foreground.with_opacity(0.5),
+            "icon.disabled": self.foreground.with_opacity(0.5),
+            "icon.placeholder": self.foreground.with_opacity(0.5),
+            "icon.accent": self.accent,
 
             // bars
             "status_bar.background": self.secondary_bg(),

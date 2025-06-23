@@ -41,11 +41,11 @@
         "hint": "#91a2a67f",
         "hint.background": "#9bcaff19",
         "hint.border": "#9bcaff33",
-        "icon": "#0000ff",
-        "icon.accent": "#0000ff",
-        "icon.disabled": "#0000ff",
-        "icon.muted": "#0000ff",
-        "icon.placeholder": "#0000ff",
+        "icon": "#91a2a6",
+        "icon.accent": "#84c4df",
+        "icon.disabled": "#91a2a67f",
+        "icon.muted": "#91a2a67f",
+        "icon.placeholder": "#91a2a67f",
         "info": "#9bcaff",
         "info.background": "#9bcaff19",
         "info.border": "#ff00000",
@@ -110,7 +110,7 @@
             "font_weight": null
           },
           "emphasis": {
-            "color": "#0000ff",
+            "color": "#ebd2a7",
             "font_style": null,
             "font_weight": null
           },
@@ -130,7 +130,7 @@
             "font_weight": null
           },
           "label": {
-            "color": "#0000ff",
+            "color": "#7fb2c7",
             "font_style": null,
             "font_weight": null
           },
@@ -329,11 +329,11 @@
         "hint": "#91a2a67f",
         "hint.background": "#9bcaff19",
         "hint.border": "#9bcaff33",
-        "icon": "#0000ff",
-        "icon.accent": "#0000ff",
-        "icon.disabled": "#0000ff",
-        "icon.muted": "#0000ff",
-        "icon.placeholder": "#0000ff",
+        "icon": "#91a2a6",
+        "icon.accent": "#84c4df",
+        "icon.disabled": "#91a2a67f",
+        "icon.muted": "#91a2a67f",
+        "icon.placeholder": "#91a2a67f",
         "info": "#9bcaff",
         "info.background": "#9bcaff19",
         "info.border": "#ff00000",
@@ -402,7 +402,7 @@
             "font_weight": null
           },
           "emphasis": {
-            "color": "#0000ff",
+            "color": "#ebd2a7",
             "font_style": null,
             "font_weight": null
           },
@@ -423,7 +423,7 @@
             "font_weight": null
           },
           "label": {
-            "color": "#0000ff",
+            "color": "#7fb2c7",
             "font_style": null,
             "font_weight": null
           },
@@ -623,11 +623,11 @@
         "hint": "#5c61657f",
         "hint.background": "#9bcaff19",
         "hint.border": "#9bcaff33",
-        "icon": "#0000ff",
-        "icon.accent": "#0000ff",
-        "icon.disabled": "#0000ff",
-        "icon.muted": "#0000ff",
-        "icon.placeholder": "#0000ff",
+        "icon": "#5c6165",
+        "icon.accent": "#88c0d0",
+        "icon.disabled": "#5c61657f",
+        "icon.muted": "#5c61657f",
+        "icon.placeholder": "#5c61657f",
         "info": "#9bcaff",
         "info.background": "#9bcaff19",
         "info.border": "#ff00000",
@@ -692,7 +692,7 @@
             "font_weight": null
           },
           "emphasis": {
-            "color": "#0000ff",
+            "color": "#d59225",
             "font_style": null,
             "font_weight": null
           },
@@ -712,7 +712,7 @@
             "font_weight": null
           },
           "label": {
-            "color": "#0000ff",
+            "color": "#50afce",
             "font_style": null,
             "font_weight": null
           },
@@ -911,11 +911,11 @@
         "hint": "#5c61657f",
         "hint.background": "#9bcaff19",
         "hint.border": "#9bcaff33",
-        "icon": "#0000ff",
-        "icon.accent": "#0000ff",
-        "icon.disabled": "#0000ff",
-        "icon.muted": "#0000ff",
-        "icon.placeholder": "#0000ff",
+        "icon": "#5c6165",
+        "icon.accent": "#88c0d0",
+        "icon.disabled": "#5c61657f",
+        "icon.muted": "#5c61657f",
+        "icon.placeholder": "#5c61657f",
         "info": "#9bcaff",
         "info.background": "#9bcaff19",
         "info.border": "#ff00000",
@@ -984,7 +984,7 @@
             "font_weight": null
           },
           "emphasis": {
-            "color": "#0000ff",
+            "color": "#d59225",
             "font_style": null,
             "font_weight": null
           },
@@ -1005,7 +1005,7 @@
             "font_weight": null
           },
           "label": {
-            "color": "#0000ff",
+            "color": "#50afce",
             "font_style": null,
             "font_weight": null
           },
