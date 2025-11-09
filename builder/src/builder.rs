@@ -123,8 +123,9 @@ impl SyntaxTheme for Theme {
               "font_weight": null
             },
             "hint": {
-              "color": "#0000ff",
-              "font_style": null,
+              "color": self.tokens.comment.mix(self.foreground, 0.2),
+              // "color": self.tokens.,
+              "font_style": "italic",
               "font_weight": null
             },
             "keyword": {
@@ -152,16 +153,17 @@ impl SyntaxTheme for Theme {
               "font_style": null,
               "font_weight": null
             },
-            "predictive": {
-              "color": "#0000ff",
-              "font_style": null,
-              "font_weight": null
-            },
-            "primary": {
-              "color": "#0000ff",
-              "font_style": null,
-              "font_weight": null
-            },
+            // "predictive": {
+            //   "color": "#0000ff",
+            //   "font_style": null,
+            //   "font_weight": null
+            // },
+            // "primary": {
+
+            //   "color": "#0000ff",
+            //   "font_style": null,
+            //   "font_weight": null
+            // },
             "property": {
               "color": self.foreground,
               "font_style": null,
@@ -248,7 +250,7 @@ impl SyntaxTheme for Theme {
               "font_weight": null
             },
             "variant": {
-              "color": "#0000ff",
+              "color": "#ff00ff",
               "font_style": null,
               "font_weight": null
           }
@@ -373,7 +375,7 @@ impl Serialize for Theme {
             "element.hover": self.accent.with_opacity(0.1),
             "element.active": self.accent.with_opacity(0.1),
             "element.selected": self.accent.with_opacity(0.1),
-            "element.disabled": "#ff0000",
+            "element.disabled": self.foreground.mix(self.background, 0.5),
 
             "icon": self.foreground,
             "icon.muted": self.foreground.with_opacity(0.5),
